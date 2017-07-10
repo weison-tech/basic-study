@@ -2,7 +2,6 @@
 
 $config = [
     'id' => 'basic',
-    'basePath' => dirname(__DIR__),
     'bootstrap' => ['core\components\bootstrap\LanguageSelector'],
     'components' => [
         'request' => [

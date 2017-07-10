@@ -22,7 +22,7 @@ class I18N extends \yii\i18n\I18N
     /**
      * @var string path which contains message overwrites
      */
-    public $messageOverwritePath = '@app/messages';
+    public $messageOverwritePath = '@core/messages';
 
     /**
      * Automatically sets the current locale

@@ -12,8 +12,9 @@ Yii::setAlias('@core', '@app/core');
 $config = [
     'name' => 'basic',
     'version' => '1.0.0',
-    'vendorPath' => '@webroot/protected/vendor', //Specify the vendor path.
-    'runtimePath' => '@webroot/protected/runtime', //Specify the runtime path.
+    'basePath' => dirname(__DIR__) . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR, //Application base path.
+    'vendorPath' => '@app/vendor', //Specify the vendor path.
+    'runtimePath' => '@app/runtime', //Specify the runtime path.
     'bootstrap' => ['log', 'core\components\bootstrap\ModuleAutoLoader'],
     'components' => [
         'moduleManager' => [
@@ -58,10 +59,11 @@ $config = [
             ],
         ],
     ],
+
     'params' => [
         'installed' => false,
         'databaseInstalled' => false,
-        'dynamicConfigFile' => '@core/config/dynamic.php',
+        'dynamicConfigFile' => '@core/config/dynamic.php', //This config generate by application.
         'moduleAutoloadPaths' => ['@webroot/protected/modules', '@core/modules'],
         'moduleMarketplacePath' => '@webroot/protected/modules',
         'availableLanguages' => [
