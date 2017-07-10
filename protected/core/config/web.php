@@ -34,6 +34,11 @@ $config = [
                 ],
             ],
         ],
+        'assetManager' => [
+            'appendTimestamp' => true,
+            'linkAssets' => true,
+            'bundles' => require(__DIR__ . '/' . (YII_ENV_PROD ? 'assets-prod.php' : 'assets-dev.php')),
+        ],
     ],
 
     'modules' => [],
