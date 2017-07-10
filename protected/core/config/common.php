@@ -12,7 +12,8 @@ Yii::setAlias('@core', '@app/core');
 $config = [
     'name' => 'basic',
     'version' => '1.0.0',
-    'basePath' => dirname(__DIR__) . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR, //Application base path.
+    'basePath' => '@app', //Application base path.
+    'viewPath' => '@core/views',
     'vendorPath' => '@app/vendor', //Specify the vendor path.
     'runtimePath' => '@app/runtime', //Specify the runtime path.
     'bootstrap' => ['log', 'core\components\bootstrap\ModuleAutoLoader'],
@@ -56,6 +57,13 @@ $config = [
                     'class' => 'yii\i18n\PhpMessageSource',
                     'basePath' => '@core/messages'
                 ],
+            ],
+        ],
+        'view' => [
+            'class' => '\core\components\View',
+            'theme' => [
+                'class' => '\core\components\Theme',
+                'name' => 'default',
             ],
         ],
     ],
