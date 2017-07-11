@@ -61,6 +61,8 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
+        /*$themes = \core\libs\ThemeHelper::getThemes();
+        print_r($themes);die;*/
         return $this->render('index');
     }
 
