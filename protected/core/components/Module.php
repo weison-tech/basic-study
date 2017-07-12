@@ -26,10 +26,10 @@ class Module extends \yii\base\Module
      * @var string The path for module resources (images, java scripts)
      * Also module related assets like README.md and module_image.png should be placed here.
      */
-    public $resourcesPath = 'assets';
+    public $resourcesPath = 'resources';
 
     /**
-     * @inheritdoc
+     * Set module setting component
      */
     public function init()
     {
@@ -117,8 +117,7 @@ class Module extends \yii\base\Module
     public function getPublishedUrl($relativePath)
     {
         $path = $this->getAssetPath();
-
-        // If the file has not been published yet we publish the module assets
+        // If the file has not been published yet we publish the module assets.
         if (!$this->isPublished($relativePath)) {
             $this->publishAssets();
         }
@@ -138,7 +137,6 @@ class Module extends \yii\base\Module
     {
         $path = $this->getAssetPath();
         $publishedPath = Yii::$app->assetManager->getPublishedPath($path);
-
         return $publishedPath !== false && is_file($publishedPath . $relativePath);
     }
 
@@ -155,7 +153,7 @@ class Module extends \yii\base\Module
     }
 
     /**
-     * Publishes the basePath/resourcesPath (assets) module directory if existing.
+     * Publishes the basePath/resourcesPath (resources) module directory if existing.
      * @return array
      */
     public function publishAssets()
@@ -177,6 +175,10 @@ class Module extends \yii\base\Module
         return is_string($path) && is_dir($path);
     }
 
+    /**
+     * Get source assetPath of module.
+     * @return string
+     */
     public function getAssetPath()
     {
         return $this->getBasePath() . '/' . $this->resourcesPath;
@@ -224,7 +226,7 @@ class Module extends \yii\base\Module
             ob_get_clean();
 
             /**
-             * Delete all Migration Table Entries
+             * Delete all Migration Table Entries from database.
              */
             $migrations = opendir($migrationPath);
             while (false !== ($migration = readdir($migrations))) {
@@ -235,11 +237,12 @@ class Module extends \yii\base\Module
             }
         }
 
-
+        //Delete all settings record those belong to the module.
         foreach (\core\models\Setting::findAll(['module_id' => $this->id]) as $containerSetting) {
             $containerSetting->delete();
         }
 
+        //Disable the module.
         Yii::$app->moduleManager->disable($this);
     }
 

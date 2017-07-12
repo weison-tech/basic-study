@@ -96,6 +96,7 @@ class ModuleManager extends yii\base\Component
      */
     public function register($basePath, $config = null)
     {
+        //If not set mandatory config options, load config from the config.
         $config_file = $basePath . '/config.php';
         if ($config === null && is_file($config_file)) {
             $config = require($config_file);
@@ -111,17 +112,20 @@ class ModuleManager extends yii\base\Component
 
         $this->modules[$config['id']] = $config['class'];
 
+        //If config has namespace, define the module's root directory's alias.
         if (isset($config['namespace'])) {
             Yii::setAlias('@' . str_replace('\\', '/', $config['namespace']), $basePath);
         }
+
         Yii::setAlias('@' . $config['id'], $basePath);
 
 
+        //If application not have been installed, enable installer module.
         if (!Yii::$app->params['installed'] && $isInstallerModule) {
             $this->enabledModules[] = $config['id'];
         }
 
-        // Not enabled and no core/installer module
+        // Not enabled and no core|installer module
         if (!$isCoreModule && !in_array($config['id'], $this->enabledModules)) {
             return;
         }
@@ -328,6 +332,10 @@ class ModuleManager extends yii\base\Component
         $this->register($module->getBasePath());
     }
 
+    /**
+     * Batch enable module
+     * @param array $modules
+     */
     public function enableModules($modules = [])
     {
         foreach ($modules as $module) {
@@ -344,18 +352,25 @@ class ModuleManager extends yii\base\Component
      */
     public function disable(Module $module)
     {
+        //Delete the enabled module in database.
         $moduleEnabled = ModuleEnabled::findOne(['module_id' => $module->id]);
         if ($moduleEnabled != null) {
             $moduleEnabled->delete();
         }
 
+        //Unset the disabled module in components's enabledModule array.
         if (($key = array_search($module->id, $this->enabledModules)) !== false) {
             unset($this->enabledModules[$key]);
         }
 
+        //Delete module in application.
         Yii::$app->setModule($module->id, null);
     }
 
+    /**
+     * Batch disable modules
+     * @param array $modules
+     */
     public function disableModules($modules = [])
     {
         foreach ($modules as $module) {
