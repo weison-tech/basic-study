@@ -61,8 +61,6 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        var_dump(Yii::$app->getModule('installer')->getAssetsUrl());
-        exit;
         return $this->render('index');
     }
 
