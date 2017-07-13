@@ -1,68 +1,29 @@
 <?php
-
-use core\compat\CActiveForm;
+use yii\widgets\ActiveForm;
 use yii\helpers\Html;
-
-$this->pageTitle = Yii::t('InstallerModule.views_config_admin', 'Admin User Configuration');
-
 ?>
+<div id="create-admin-account-form" class="panel panel-default">
 
-<div id="admin-form" class="panel panel-default animated fadeIn">
     <div class="panel-heading">
-        <?php echo Yii::t('InstallerModule.views_config_admin', '<strong>Admin User</strong> Configuration'); ?>
+        <?php echo Yii::t('InstallerModule.views_config_admin', '<strong>Admin</strong> Account'); ?>
     </div>
 
     <div class="panel-body">
-        <p>
-            <?php echo Yii::t('InstallerModule.views_config_admin', 'Below will create one admin user, you can use this user to manage your shopping platform.'); ?>
-        </p>
 
-        <?php $form = CActiveForm::begin(); ?>
+        <p><?php echo Yii::t('InstallerModule.views_config_admin', "You're almost done. In this step you have to fill out the form to create an admin account. With this account you can manage the whole network."); ?></p>
 
         <hr/>
-        <div class="form-group">
-            <?php echo $form->labelEx($model, 'username'); ?>
-            <?php echo $form->textField($model, 'username', array('class' => 'form-control', 'id' => 'username', 'placeholder' => Yii::t('InstallerModule.views_config_admin', 'Username'))); ?>
-            <?php echo $form->error($model, 'username', ['style' => 'color:#ff8989']); ?>
-        </div>
-        <hr/>
-        <div class="form-group">
-            <?php echo $form->labelEx($model, 'email'); ?>
-            <?php echo $form->textField($model, 'email', array('class' => 'form-control', 'placeholder' => Yii::t('InstallerModule.views_config_admin', 'Email'))); ?>
-            <?php echo $form->error($model, 'email', ['style' => 'color:#ff8989']); ?>
-        </div>
-        <hr />
-        <div class="form-group">
-            <?php echo $form->labelEx($model, 'password'); ?>
-            <?php echo $form->passwordField($model, 'password', array('class' => 'form-control', 'placeholder' => Yii::t('InstallerModule.views_config_admin', 'Password'))); ?>
-            <?php echo $form->error($model, 'password', ['style' => 'color:#ff8989']); ?>
-        </div>
 
-        <div class="form-group">
-            <?php echo $form->labelEx($model, 'confirmPassword'); ?>
-            <?php echo $form->passwordField($model, 'confirmPassword', array('class' => 'form-control', 'placeholder' => Yii::t('InstallerModule.views_config_admin', 'Confirm Password'))); ?>
-            <?php echo $form->error($model, 'confirmPassword', ['style' => 'color:#ff8989']); ?>
-        </div>
+        <?php $form = ActiveForm::begin(['enableClientValidation' => false]); ?>
 
-        <hr>
+        <?= $form->field($model, 'email')->textInput(['autofocus' => true]) ?>
 
-        <?php echo Html::submitButton(Yii::t('InstallerModule.views_setup_database', 'Next') . ' <i class="fa fa-arrow-circle-right"></i>', array('class' => 'btn btn-primary', 'data-loader' => "modal", 'data-message' => Yii::t('InstallerModule.views_setup_database', 'Set administrator account...'))); ?>
+        <?= $form->field($model, 'username')->textInput() ?>
 
-        <?php CActiveForm::end(); ?>
+        <?= $form->field($model, 'password_hash')->passwordInput() ?>
+
+        <?php echo Html::submitButton(Yii::t('InstallerModule.views_config_basic', 'Next'), array('class' => 'btn btn-primary', 'data-ui-loader' => '')); ?>
+
+        <?php ActiveForm::end(); ?>
     </div>
 </div>
-
-<script type="text/javascript">
-
-    $(function () {
-        // set cursor to email field
-        $('#username').focus();
-    })
-
-    // Shake panel after wrong validation
-    <?php if ($model->hasErrors()) { ?>
-        $('#admin-form').removeClass('fadeIn');
-        $('#admin-form').addClass('shake');
-    <?php } ?>
-
-</script>

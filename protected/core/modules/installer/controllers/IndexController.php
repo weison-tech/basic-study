@@ -1,7 +1,14 @@
 <?php
+
+/**
+ * @link http://www.itweshare.com
+ * @copyright Copyright (c) 2017 Itweshare
+ * @author xiaomalover <xiaomalover@gmail.com>
+ */
+
 namespace core\modules\installer\controllers;
 
-use yii\web\Controller;
+use core\components\Controller;
 
 /**
  * Index Controller shows a simple welcome page.
@@ -25,7 +32,7 @@ class IndexController extends Controller
         if ($this->module->checkDBConnection()) {
             return $this->redirect(['setup/init']);
         } else {
-            return $this->redirect(['setup/prerequisites']);
+            return $this->redirect(['setup/pre-requisites']);
         }
     }
 

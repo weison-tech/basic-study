@@ -9,13 +9,14 @@
 namespace core\models;
 
 use Yii;
+use yii\db\ActiveRecord;
 
 /**
  * This is the model class for table "module_enabled".
  *
  * @property string $module_id
  */
-class ModuleEnabled extends yii\db\ActiveRecord
+class ModuleEnabled extends ActiveRecord
 {
 
     const CACHE_ID_ALL_IDS = 'enabledModuleIds';

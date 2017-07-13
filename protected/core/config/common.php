@@ -20,15 +20,6 @@ $config = [
             'class' => '\core\components\ModuleManager'
         ],
 
-        'db' => [
-            'class' => 'yii\db\Connection',
-            'dsn' => 'mysql:host=localhost;dbname=basic',
-            'username' => 'root',
-            'password' => 'root',
-            'charset' => 'utf8',
-            'enableSchemaCache' => true,
-        ],
-
         'urlManager' => [
             'enablePrettyUrl' => true,
             'showScriptName' => false,//Hidden index.php

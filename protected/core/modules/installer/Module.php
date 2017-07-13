@@ -1,14 +1,21 @@
 <?php
+
+/**
+ * @link http://www.itweshare.com
+ * @copyright Copyright (c) 2017 Itweshare
+ * @author xiaomalover <xiaomalover@gmail.com>
+ */
+
 namespace core\modules\installer;
 
 use Yii;
 use yii\helpers\Url;
 use yii\base\Exception;
-use yii\web\HttpException;
+use yii\console\Application as ConsoleApplication;
 use core\libs\DynamicConfig;
 
 /**
- * InstallerModule provides an web installation interface for the applcation
+ * InstallerModule provides an web installation interface for the application
  */
 class Module extends \core\components\Module
 {
@@ -23,8 +30,6 @@ class Module extends \core\components\Module
      */
     public $controllerNamespace = 'core\modules\installer\controllers';
 
-    public $defaultRoute = 'index';
-
     /**
      * Array of config steps
      *
@@ -38,6 +43,11 @@ class Module extends \core\components\Module
     public function init()
     {
         parent::init();
+
+        if (Yii::$app instanceof ConsoleApplication) {
+            return;
+        }
+
         $this->layout = '@core/modules/installer/views/layouts/main.php';
         $this->initConfigSteps();
         $this->sortConfigSteps();
@@ -51,10 +61,9 @@ class Module extends \core\components\Module
 
         // Block installer, when it's marked as installed
         if (Yii::$app->params['installed']) {
-            throw new HttpException(500, Yii::t('InstallerModule.base', 'Shop is already installed!'));
+            throw new \yii\web\HttpException(500, 'Application is already installed!');
         }
 
-        // Cancel csrf validate for installer module.
         Yii::$app->controller->enableCsrfValidation = false;
         return parent::beforeAction($action);
     }
@@ -73,9 +82,7 @@ class Module extends \core\components\Module
             // return the current connection state.
             return Yii::$app->db->getIsActive();
         } catch (Exception $e) {
-
-        } catch (\PDOException $e) {
-
+            
         }
         return false;
     }
@@ -114,12 +121,12 @@ class Module extends \core\components\Module
     protected function initConfigSteps()
     {
         /**
-         * Step:  Basic Configuration, set the shopping platform name.
+         * Step:  Basic Configuration
          */
         $this->configSteps['basic'] = [
             'sort' => 100,
             'url' => Url::to(['/installer/config/basic']),
-            'isCurrent' => function () {
+            'isCurrent' => function() {
                 return (Yii::$app->controller->id == 'config' && Yii::$app->controller->action->id == 'basic');
             },
         ];
@@ -128,20 +135,20 @@ class Module extends \core\components\Module
          * Step:  Setup Admin User
          */
         $this->configSteps['admin'] = [
-            'sort' => 200,
+            'sort' => 400,
             'url' => Url::to(['/installer/config/admin']),
-            'isCurrent' => function () {
+            'isCurrent' => function() {
                 return (Yii::$app->controller->id == 'config' && Yii::$app->controller->action->id == 'admin');
             },
         ];
 
         /**
-         * Step:  Finish the configuration.
+         * Step: finished
          */
         $this->configSteps['finish'] = [
-            'sort' => 300,
+            'sort' => 1000,
             'url' => Url::to(['/installer/config/finish']),
-            'isCurrent' => function () {
+            'isCurrent' => function() {
                 return (Yii::$app->controller->id == 'config' && Yii::$app->controller->action->id == 'finish');
             },
         ];
@@ -173,7 +180,7 @@ class Module extends \core\components\Module
      */
     protected function sortConfigSteps()
     {
-        usort($this->configSteps, function ($a, $b) {
+        usort($this->configSteps, function($a, $b) {
             return ($a['sort'] > $b['sort']) ? 1 : -1;
         });
     }

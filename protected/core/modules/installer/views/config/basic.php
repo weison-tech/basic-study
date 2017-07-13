@@ -1,48 +1,27 @@
 <?php
 
-use core\compat\CActiveForm;
-use core\compat\CHtml;
+use yii\widgets\ActiveForm;
+use yii\helpers\Html;
 ?>
-<div id="name-form" class="panel panel-default animated fadeIn">
+<div id="name-form" class="panel panel-default">
 
     <div class="panel-heading">
-        <?php echo Yii::t('InstallerModule.views_config_basic', 'Shopping Platform <strong>Name</strong>'); ?>
+        <?php echo Yii::t('InstallerModule.views_config_basic', 'Social Network <strong>Name</strong>'); ?>
     </div>
 
     <div class="panel-body">
 
-        <p><?php echo Yii::t('InstallerModule.views_config_basic', 'Of course, your new shopping platform needs a name. Please change the default name with one you like.'); ?></p>
+        <p><?php echo Yii::t('InstallerModule.views_config_basic', 'Of course, your new social network needs a name. Please change the default name with one you like. (For example the name of your company, organization or club)'); ?></p>
 
 
-        <?php $form = CActiveForm::begin(); ?>
+        <?php $form = ActiveForm::begin(); ?>
 
-        <div class="form-group">
-            <?php echo $form->labelEx($model, 'name'); ?>
-            <?php echo $form->textField($model, 'name', array('class' => 'form-control')); ?>
-            <?php echo $form->error($model, 'name'); ?>
-        </div>
+        <?= $form->field($model, 'name')->textInput(['autofocus' => true]) ?>
 
         <hr>
 
-        <?php echo CHtml::submitButton(Yii::t('InstallerModule.views_config_basic', 'Next') . ' <i class="fa fa-arrow-circle-right"></i>', array('class' => 'btn btn-primary')); ?>
+        <?php echo Html::submitButton(Yii::t('InstallerModule.views_config_basic', 'Next'), array('class' => 'btn btn-primary', 'data-ui-loader' => '')); ?>
 
-        <?php CActiveForm::end(); ?>
+        <?php ActiveForm::end(); ?>
     </div>
 </div>
-
-<script type="text/javascript">
-
-    $(function () {
-        // set cursor to email field
-        $('#ConfigBasicForm_name').focus();
-    })
-
-    // Shake panel after wrong validation
-<?php if ($model->hasErrors()) { ?>
-        $('#name-form').removeClass('fadeIn');
-        $('#name-form').addClass('shake');
-<?php } ?>
-
-</script>
-
-

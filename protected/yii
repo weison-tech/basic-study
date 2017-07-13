@@ -15,7 +15,7 @@ require(__DIR__ . '/vendor/autoload.php');
 require(__DIR__ . '/vendor/yiisoft/yii2/Yii.php');
 
 //Dynamic config file is created by application.
-$dynamic_config = __DIR__ . '/protected/core/config/dynamic.php';
+$dynamic_config = __DIR__ . '/core/config/dynamic.php';
 
 $config = yii\helpers\ArrayHelper::merge(
     require(__DIR__ . '/core/config/common.php'),

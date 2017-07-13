@@ -1,36 +1,42 @@
 <?php
+
+/**
+ * @link http://www.itweshare.com
+ * @copyright Copyright (c) 2017 Itweshare
+ * @author xiaomalover <xiaomalover@gmail.com>
+ */
+
 namespace core\modules\installer\controllers;
 
 use Yii;
 use core\components\Controller;
 use core\modules\installer\forms\DatabaseForm;
 use core\libs\DynamicConfig;
-use core\modules\installer\widgets\PrerequisitesList;
-use core\commands\MigrateController;
+use core\modules\installer\widgets\PreRequisitesList;
 
 /**
  * SetupController checks prerequisites and is responsible for database
  * connection and schema setup.
+ *
+ * @since 0.5
  */
 class SetupController extends Controller
 {
-
-    const PASSWORD_PLACEHOLDER = 'nothingToSeeHere!';
+    const PASSWORD_PLACEHOLDER = 'n0thingToSeeHere!';
 
     public function actionIndex()
     {
-        return $this->redirect(['prerequisites']);
+        return $this->redirect(['pre-requisites']);
     }
 
     /**
-     * Prequisites action checks application requirement using the SelfTest
-     * Libary
+     * Pre requisites action checks application requirement using the SelfTest
      *
      * (Step 2)
      */
-    public function actionPrerequisites()
+    public function actionPreRequisites()
     {
-        return $this->render('prerequisites', ['hasError' => PrerequisitesList::hasError()]);
+        return $this->render('pre-requisites', ['hasError' => PrerequisitesList::hasError()]);
     }
 
     /**
@@ -43,38 +49,27 @@ class SetupController extends Controller
     {
         $errorMessage = "";
 
-        //Load config params from dynamic config file.
         $config = DynamicConfig::load();
 
-        //Init DatabaseForm model with dynamic config params.
         $model = new DatabaseForm();
-        if (isset($config['params']['installer']['db']['installer_hostname'])) {
+        if (isset($config['params']['installer']['db']['installer_hostname']))
             $model->hostname = $config['params']['installer']['db']['installer_hostname'];
-        }
 
-        if (isset($config['params']['installer']['db']['installer_database'])) {
+        if (isset($config['params']['installer']['db']['installer_database']))
             $model->database = $config['params']['installer']['db']['installer_database'];
-        }
 
-        if (isset($config['components']['db']['username'])) {
+        if (isset($config['components']['db']['username']))
             $model->username = $config['components']['db']['username'];
-        }
 
-        if (isset($config['components']['db']['password'])) {
+        if (isset($config['components']['db']['password']))
             $model->password = self::PASSWORD_PLACEHOLDER;
-        }
-
-        if (isset($config['components']['db']['tablePrefix'])) {
-            $model->tablePrefix = $config['components']['db']['tablePrefix'];
-        }
 
         if ($model->load(Yii::$app->request->post()) && $model->validate()) {
             $connectionString = "mysql:host=" . $model->hostname . ";dbname=" . $model->database;
 
             $password = $model->password;
-            if ($password == self::PASSWORD_PLACEHOLDER) {
+            if ($password == self::PASSWORD_PLACEHOLDER)
                 $password = $config['components']['db']['password'];
-            }
 
             // Create Test DB Connection
             $dbConfig = [
@@ -82,7 +77,6 @@ class SetupController extends Controller
                 'dsn' => $connectionString,
                 'username' => $model->username,
                 'password' => $password,
-                'tablePrefix' => $model->tablePrefix,
                 'charset' => 'utf8',
             ];
 
@@ -117,7 +111,7 @@ class SetupController extends Controller
     {
 
         if (!$this->module->checkDBConnection()) {
-            return $this->redirect(['database']);
+            return $this->redirect(['/installer/setup/database']);
         }
 
         // Flush Caches
@@ -127,12 +121,10 @@ class SetupController extends Controller
         @ini_set('max_execution_time', 0);
 
         // Migrate Up Database
-        MigrateController::webMigrateAll();
+        \core\commands\MigrateController::webMigrateAll();
 
-        //Rewrites DynamicConfiguration based on Database Stored Settings
         DynamicConfig::rewrite();
 
-        //Set the DynamicConfiguration's param databaseInstalled to be true.
         $this->module->setDatabaseInstalled();
 
         return $this->redirect(['/installer/config/index']);

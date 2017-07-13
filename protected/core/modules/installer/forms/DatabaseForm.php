@@ -1,10 +1,19 @@
 <?php
+
+/**
+ * @link http://www.itweshare.com
+ * @copyright Copyright (c) 2017 Itweshare
+ * @author xiaomalover <xiaomalover@gmail.com>
+ */
+
 namespace core\modules\installer\forms;
 
 use Yii;
 
 /**
  * DatabaseForm holds all required database settings.
+ *
+ * @since 0.5
  */
 class DatabaseForm extends \yii\base\Model
 {
@@ -30,17 +39,12 @@ class DatabaseForm extends \yii\base\Model
     public $database;
 
     /**
-     * @var string table prefix
-     */
-    public $tablePrefix;
-
-    /**
      * @inheritdoc
      */
     public function rules()
     {
         return array(
-            array(['hostname', 'username', 'database', 'tablePrefix'], 'required'),
+            array(['hostname', 'username', 'database'], 'required'),
             array('password', 'safe'),
         );
     }
@@ -55,7 +59,6 @@ class DatabaseForm extends \yii\base\Model
             'username' => Yii::t('InstallerModule.forms_DatabaseForm', 'Username'),
             'password' => Yii::t('InstallerModule.forms_DatabaseForm', 'Password'),
             'database' => Yii::t('InstallerModule.forms_DatabaseForm', 'Name of Database'),
-            'tablePrefix' => Yii::t('InstallerModule.forms_DatabaseForm', 'Table Prefix'),
         );
     }
 

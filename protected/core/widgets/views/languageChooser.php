@@ -1,14 +1,16 @@
 <?php
 use yii\widgets\ActiveForm;
 ?>
-<div class="text text-center animated fadeIn">
+<div class="text-center">
     <?php if (count($languages) > 1) : ?>
-        <?= Yii::t('base', "Choose language:"); ?>
-        <div class="langSwitcher inline-block">
-            <?php $form = ActiveForm::begin(['id' => 'choose-language-form']); ?>
+        <?php $form = ActiveForm::begin([
+            'id' => 'choose-language-form',
+            'options' => ['class' => 'form-inline']
+        ]); ?>
 
-            <?= $form->field($model, 'language')->dropDownList($languages,['onChange' => 'this.form.submit()']) ?>
-            <?php ActiveForm::end(); ?>
-        </div>
+        <?= $form->field($model, 'language')
+            ->dropDownList($languages,['onChange' => 'this.form.submit()'])
+        ?>
+        <?php ActiveForm::end(); ?>
     <?php endif; ?>
 </div>

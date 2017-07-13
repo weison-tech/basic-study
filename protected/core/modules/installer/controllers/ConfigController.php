@@ -1,30 +1,35 @@
 <?php
+
+/**
+ * @link http://www.itweshare.com
+ * @copyright Copyright (c) 2017 Itweshare
+ * @author xiaomalover <xiaomalover@gmail.com>
+ */
+
 namespace core\modules\installer\controllers;
 
 use Yii;
 use core\components\Controller;
-use core\modules\admin\forms\AdminForm;
 use core\modules\admin\models\Admin;
 
 /**
- * ConfigController allows inital configuration of shop.
+ * ConfigController allows initial configuration of App.
  * E.g. Name of Network, Root User
  *
  * ConfigController can only run after SetupController wrote the initial
  * configuration.
+ *
+ * @author luke
  */
 class ConfigController extends Controller
 {
-
-    const EVENT_INSTALL_SAMPLE_DATA = 'install_sample_data';
-
     /**
      * Before each config controller action check if
      *  - Database Connection works
      *  - Database Migrated Up
      *  - Not already configured (e.g. update)
-     *
-     * @param boolean
+     * @param \yii\base\Action $action
+     * @return boolean
      */
     public function beforeAction($action)
     {
@@ -59,13 +64,12 @@ class ConfigController extends Controller
     public function actionIndex()
     {
         if (Yii::$app->settings->get('name') == "") {
-            Yii::$app->settings->set('name', "Yii Shop");
+            Yii::$app->settings->set('name', "Yii2商城");
         }
 
-        //Init some default data.
         \core\modules\installer\libs\InitialData::bootstrap();
 
-        return $this->redirect($this->module->getNextConfigStepUrl());
+        return $this->redirect(Yii::$app->getModule('installer')->getNextConfigStepUrl());
     }
 
     /**
@@ -78,7 +82,8 @@ class ConfigController extends Controller
 
         if ($form->load(Yii::$app->request->post()) && $form->validate()) {
             Yii::$app->settings->set('name', $form->name);
-            return $this->redirect($this->module->getNextConfigStepUrl());
+            Yii::$app->settings->set('mailer.systemEmailName', $form->name);
+            return $this->redirect(Yii::$app->getModule('installer')->getNextConfigStepUrl());
         }
 
         return $this->render('basic', array('model' => $form));
@@ -95,16 +100,16 @@ class ConfigController extends Controller
 
         // Admin account already created
         if (Admin::find()->count() > 0) {
-            return $this->redirect($this->module->getNextConfigStepUrl());
-        }
-
-        $adminModel = new AdminForm();
-
-        if ($adminModel->load(Yii::$app->request->post()) && $adminModel->validate() && $adminModel->create()) {
             return $this->redirect(Yii::$app->getModule('installer')->getNextConfigStepUrl());
         }
 
-        return $this->render('admin', array('model' => $adminModel));
+        //Create admin user.
+        $model = new Admin();
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            return $this->redirect(Yii::$app->getModule('installer')->getNextConfigStepUrl());
+        }
+
+        return $this->render('admin', array('model' => $model));
     }
 
     public function actionFinish()

@@ -17,8 +17,7 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
-    'Install' => '安装向导',
-    '<strong>Welcome</strong> to use Yii-Shop to build your own shopping platform' => '<strong>欢迎</strong> 使用Yii开源商城系统搭建你自己的购物平台！',
+    '<strong>Welcome</strong> use Yii2-Shop<br> to create your own shop platform.' => '<strong>欢迎</strong> 使用 Yii2-Shop<br> 来创建您自己的购物平台。',
     'Next' => '下一步',
-    'This wizard will install and configure your own shopping platform.<br><br>To continue, click Next.' => '该向导将引导你安装和配置你自己的购物平台。<br><br>点击下一步继续。',
+    'This wizard will install and configure your own platform instance.<br><br>To continue, click Next.' => '该向导将安装和配置你自己的购物平台实例。<br><br>点击下一步继续。',
 ];

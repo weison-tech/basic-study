@@ -1,4 +1,11 @@
 <?php
+
+/**
+ * @link http://www.itweshare.com
+ * @copyright Copyright (c) 2017 Itweshare
+ * @author xiaomalover <xiaomalover@gmail.com>
+ */
+
 namespace core\modules\installer\libs;
 
 use Yii;
@@ -18,6 +25,11 @@ class InitialData
 
         Yii::$app->settings->set('baseUrl', \yii\helpers\BaseUrl::base(true));
         Yii::$app->settings->set('paginationSize', 10);
+
+        // Mailing
+        Yii::$app->settings->set('mailer.transportType', 'php');
+        Yii::$app->settings->set('mailer.systemEmailAddress', 'social@example.com');
+        Yii::$app->settings->set('mailer.systemEmailName', 'My Social Network');
 
         // Caching
         Yii::$app->settings->set('cache.class', 'yii\caching\FileCache');
