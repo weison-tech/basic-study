@@ -1,0 +1,7 @@
+{
+    "id": "goods",
+    "name": "Goods",
+    "description": "The goods management module.",
+    "keywords": ["goods", "yii2", "shop"],
+    "version": "1.0.0"
+}

@@ -1,0 +1,9 @@
+{
+    "id": "order",
+    "name": "order",
+    "description": "Order Module",
+    "keywords": [
+        "core"
+    ],
+    "version": "1.0"
+}
