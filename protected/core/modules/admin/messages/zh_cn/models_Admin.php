@@ -16,7 +16,8 @@
  *
  * NOTE: this file must be saved in UTF-8 encoding.
  */
-return [
-    '<strong>Welcome</strong> use Yii2-Shop<br> to create your own shop platform.' => '<strong>欢迎</strong> 使用 Yii2-Shop<br> 来创建您自己的购物平台。',
-    'This wizard will install and configure your own platform instance.<br><br>To continue, click Next.' => '该向导将安装和配置你自己的购物平台实例。<br><br>点击下一步继续。',
-];
+return array(
+    'Username' => '用户名',
+    'Password' => '密 码',
+    'Email' => '邮箱',
+);

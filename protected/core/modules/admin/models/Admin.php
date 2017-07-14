@@ -64,14 +64,9 @@ class Admin extends \yii\db\ActiveRecord implements IdentityInterface
     public function attributeLabels()
     {
         return [
-            'id' => Yii::t('app', 'ID'),
-            'username' => Yii::t('app', 'Username'),
-            'password_hash' => Yii::t('app', 'Password'),
-            'password_reset_token' => Yii::t('app', 'Password Reset Token'),
-            'email' => Yii::t('app', 'Email'),
-            'status' => Yii::t('app', 'Status'),
-            'created_at' => Yii::t('app', 'Created At'),
-            'updated_at' => Yii::t('app', 'Updated At'),
+            'username' => Yii::t('AdminModule.models_Admin', 'Username'),
+            'password_hash' => Yii::t('AdminModule.models_Admin', 'Password'),
+            'email' => Yii::t('AdminModule.models_Admin', 'Email'),
         ];
     }
 

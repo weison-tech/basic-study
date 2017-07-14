@@ -22,7 +22,7 @@ use yii\helpers\Html;
 
         <?= $form->field($model, 'password_hash')->passwordInput() ?>
 
-        <?php echo Html::submitButton(Yii::t('InstallerModule.views_config_basic', 'Next'), array('class' => 'btn btn-primary', 'data-ui-loader' => '')); ?>
+        <?php echo Html::submitButton(Yii::t('InstallerModule.base', 'Next'), array('class' => 'btn btn-primary', 'data-ui-loader' => '')); ?>
 
         <?php ActiveForm::end(); ?>
     </div>

@@ -25,7 +25,7 @@ use yii\helpers\Url;
         <br><hr><br>
 
         <?php echo Html::a(
-                Yii::t('InstallerModule.views_index_index', "Next")
+                Yii::t('InstallerModule.base', "Next")
                 . ' <i class="fa fa-arrow-circle-right"></i>',
                 Url::to(['go']),
             array('class' => 'btn btn-primary')); ?>
