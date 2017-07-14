@@ -12,8 +12,20 @@ $config = [
             'class' => 'yii\caching\FileCache',
         ],
         'user' => [
-            'identityClass' => 'app\models\User',
+            'class' => 'yii\web\User',
+            'identityClass' => 'core\modules\user\models\User',
             'enableAutoLogin' => true,
+            'authTimeout' => 1400,
+            'loginUrl' => ['/user/auth/login'],
+            'idParam' => '__user',
+        ],
+        'admin' => [
+            'class' => 'yii\web\User',
+            'identityClass' => 'core\modules\admin\models\Admin',
+            'enableAutoLogin' => true,
+            'authTimeout' => 1400,
+            'loginUrl' => ['/admin/index/login'],
+            'idParam' => '__admin',
         ],
         'errorHandler' => [
             'errorAction' => 'site/error',

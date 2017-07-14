@@ -30,13 +30,13 @@ use yii\widgets\Breadcrumbs;
                         <!-- User Account: style can be found in dropdown.less -->
                         <li class="dropdown user user-menu">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                <img src="/img/default_user.jpg" class="user-image">
+                                <img src="/static/img/default_user.jpg" class="user-image">
                                 <span><?php echo Yii::$app->admin->identity->username ?> <i class="caret"></i></span>
                             </a>
                             <ul class="dropdown-menu">
                                 <!-- User image -->
                                 <li class="user-header light-blue">
-                                    <img src="/img/default_user.jpg" class="img-circle" alt="User Image"/>
+                                    <img src="/static/img/default_user.jpg" class="img-circle" alt="User Image"/>
                                     <p>
                                         <?php echo Yii::$app->admin->identity->username ?>
                                     </p>

@@ -15,7 +15,7 @@ AdminLayoutAsset::register($this)
         <meta charset="<?php echo Yii::$app->charset ?>">
         <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
         <?php echo Html::csrfMetaTags() ?>
-        <title><?php echo Html::encode($this->pageTitle); ?></title>
+        <title><?php echo Html::encode($this->title); ?></title>
         <?php $this->head() ?>
     </head>
     <?php

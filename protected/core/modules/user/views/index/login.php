@@ -2,7 +2,7 @@
 use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
 
-$this->pageTitle = Yii::t('AdminModule.views_index_login', 'Sign In');
+$this->title = Yii::t('AdminModule.views_index_login', 'Sign In');
 
 ?>
 <div class="login-box">
