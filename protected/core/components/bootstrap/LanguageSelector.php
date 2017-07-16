@@ -13,8 +13,7 @@ use yii\base\BootstrapInterface;
 /**
  * LanguageSelector automatically sets the language of the i18n component
  *
- * @see \humhub\components\i18n\I18N
- * @author luke
+ * @see \core\components\i18n\I18N
  */
 class LanguageSelector implements BootstrapInterface
 {

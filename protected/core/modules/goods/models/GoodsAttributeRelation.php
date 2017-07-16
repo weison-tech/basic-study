@@ -18,7 +18,7 @@ class GoodsAttributeRelation extends \yii\db\ActiveRecord
      */
     public static function tableName()
     {
-        return 'ys_goods_attribute_relation';
+        return '{{%goods_attribute_relation}}';
     }
 
     /**

@@ -13,5 +13,15 @@ namespace core\components;
  */
 class View extends \yii\web\View
 {
-
+    /**
+     * Registers a Javascript variable
+     *
+     * @param string $name
+     * @param string $value
+     */
+    public function registerJsVar($name, $value)
+    {
+        $jsCode = "var " . $name . " = '" . addslashes($value) . "';\n";
+        $this->registerJs($jsCode, View::POS_HEAD, $name);
+    }
 }

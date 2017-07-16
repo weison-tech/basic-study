@@ -2,7 +2,7 @@
 namespace core\modules\goods\models;
 
 use Yii;
-use core\components\ActiveRecord;
+use yii\db\ActiveRecord;
 
 /**
  * This is the model class for table "{{%spec_image}}".

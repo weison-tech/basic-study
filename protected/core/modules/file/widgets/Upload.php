@@ -1,7 +1,7 @@
 <?php
 namespace core\modules\file\widgets;
 
-use core\components\ActiveRecord;
+use yii\db\ActiveRecord;
 use Yii;
 use yii\base\InvalidParamException;
 use yii\helpers\ArrayHelper;

@@ -50,6 +50,7 @@ $this->registerJsVar('fileuploader_error_modal_errormsg',
            ]); ?>" multiple>
 </span>
 
+<script src="/static/js/fileuploader.js"></script>
 <script>
     $(function () {
         'use strict';

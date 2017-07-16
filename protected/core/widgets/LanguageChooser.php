@@ -12,9 +12,6 @@ use Yii;
 
 /**
  * LanguageChooser
- *
- * @author luke
- * @since 0.11
  */
 class LanguageChooser extends \yii\base\Widget
 {
