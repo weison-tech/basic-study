@@ -1,10 +1,8 @@
 <?php
-use core\assets\AdminLteAsset;
-use core\assets\AdminLayoutAsset;
+use core\modules\admin\assets\AdminLayoutAsset;
 use yii\helpers\Html;
 use yii\helpers\Url;
 
-AdminLteAsset::register($this);
 AdminLayoutAsset::register($this)
 ?>
 

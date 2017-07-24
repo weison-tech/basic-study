@@ -1,5 +1,5 @@
 <?php
-namespace core\assets;
+namespace core\modules\admin\assets;
 
 class AdminLteAsset extends \dmstr\web\AdminLteAsset
 {

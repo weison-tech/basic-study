@@ -1,12 +1,11 @@
 <?php
-namespace core\assets;
+namespace core\modules\admin\assets;
 
 use yii\web\AssetBundle;
 
 class AdminLayoutAsset extends AssetBundle
 {
-    public $basePath = '@webroot/static';
-    public $baseUrl = '@web/static';
+    public $sourcePath = '@core/modules/admin/resources';
 
     public $js = [
         'js/admin_layout_setting.js',
@@ -15,6 +14,7 @@ class AdminLayoutAsset extends AssetBundle
     ];
 
     public $depends = [
-        'weison\alert\LayerAsset', // Import layer alert's js and css
+        'weison\alert\LayerAsset', // Import layer alert's js and css.
+        'core\modules\admin\assets\AdminLteAsset', //Import admin lte theme assets.
     ];
 }
