@@ -3,7 +3,7 @@ use core\modules\admin\assets\AdminLayoutAsset;
 use yii\helpers\Html;
 use yii\helpers\Url;
 
-AdminLayoutAsset::register($this)
+AdminLayoutAsset::register($this);
 ?>
 
 <?php $this->beginPage() ?>
