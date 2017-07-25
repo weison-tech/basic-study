@@ -19,5 +19,6 @@
 return [
     '<strong>Congratulations</strong>. You\'re done.' => '<strong>祝贺你</strong>， 安装完成。',
     'The installation completed successfully! Have fun with your new platform.' => '新平台安装成功完成！祝你使用愉快。',
-    'Sign in' => '登录',
+    'View frontend' => '浏览网站前台',
+    'Go to admin panel' => '去管理后台'
 ];

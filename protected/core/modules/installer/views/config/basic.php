@@ -20,7 +20,7 @@ use yii\helpers\Html;
 
         <hr>
 
-        <?php echo Html::submitButton(Yii::t('InstallerModule.base', 'Next'), array('class' => 'btn btn-primary', 'data-ui-loader' => '')); ?>
+        <?php echo Html::submitButton(Yii::t('InstallerModule.base', 'Next') . ' <i class="fa fa-arrow-circle-right"></i>', array('class' => 'btn btn-primary', 'data-ui-loader' => '')); ?>
 
         <?php ActiveForm::end(); ?>
     </div>

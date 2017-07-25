@@ -1,0 +1,132 @@
+//
+// Theme color variables
+// --------------------------------------------------
+@success: #97d271;
+@warning: #fdd198;
+@danger: #ff8989;
+@font1: #bac2c7;
+@font2: #555;
+@background: #ededed;
+
+//
+// General
+// --------------------------------------------------
+body {
+  padding-top: 100px;
+  background-color: @background;
+  color: #777;
+  font-family: 'Open Sans', sans-serif;
+  a,
+  a:hover,
+  a:focus,
+  a:active,
+  a.active {
+    color: @font2;
+    text-decoration: none;
+  }
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+hr {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+h4 {
+  font-weight: 300;
+  font-size: 150%;
+}
+
+// Mixins
+.heading {
+  font-size: 16px;
+  font-weight: 300;
+  color: @font2;
+  background-color: white;
+  border: none;
+  padding: 10px;
+}
+
+.text-center {
+  text-align: center !important;
+}
+
+//
+// Panels
+// --------------------------------------------------
+.panel {
+  border: none;
+  background-color: #fff;
+  box-shadow: 0 0 3px #dadada;
+  -webkit-box-shadow: 0 0 3px #dadada;
+  -moz-box-shadow: 0 0 3px #dadada;
+  border-radius: 4px;
+  position: relative;
+  h1 {
+    font-size: 16px;
+    font-weight: 300;
+    margin-top: 0;
+    color: @font2;
+  }
+  .panel-heading {
+    .heading;
+    border-radius: 4px;
+    .heading-link {
+      color: #6fdbe8 !important;
+      font-size: 0.8em;
+    }
+  }
+  .panel-body {
+    padding: 10px;
+    font-size: 13px;
+    p {
+      color: @font2;
+    }
+  }
+}
+
+// Panels - Installer
+.installer {
+  .logo {
+    text-align: center;
+  }
+  h2 {
+    font-weight: 100;
+  }
+  .panel {
+    margin-top: 50px;
+    h3 {
+      margin-top: 0;
+    }
+  }
+  .powered,
+  .powered a {
+    color: @font1 !important;
+    margin-top: 10px;
+    font-size: 12px;
+  }
+  .fa {
+    width: 18px;
+  }
+  .check-ok {
+    color: @success;
+  }
+  .check-warning {
+    color: @warning;
+  }
+  .check-error {
+    color: @danger;
+  }
+  .prerequisites-list {
+    ul {
+      list-style: none;
+      padding-left: 15px;
+      li {
+        padding-bottom: 5px;
+      }
+    }
+  }
+}

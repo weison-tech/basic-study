@@ -23,7 +23,7 @@ use core\modules\installer\widgets\PreRequisitesList;
 
         <hr>
 
-        <?php echo Html::a('<i class="fa fa-repeat"></i> ' . Yii::t('InstallerModule.views_setup_pre-requisites', 'Check again'), array('/installer/setup/pre-requisites'), array('class' => 'btn btn-primary', 'data-ui-loader' => '')); ?>
+        <?php echo Html::a('<i class="fa fa-repeat"></i> ' . Yii::t('InstallerModule.views_setup_pre-requisites', 'Check again'), array('/installer/setup/pre-requisites'), array('class' => 'btn btn-default', 'data-ui-loader' => '')); ?>
 
         <?php if (!$hasError): ?>
             <?php echo Html::a(Yii::t('InstallerModule.base', 'Next') . ' <i class="fa fa-arrow-circle-right"></i>', array('/installer/setup/database'), array('class' => 'btn btn-primary', 'data-ui-loader' => '')); ?>

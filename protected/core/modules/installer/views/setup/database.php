@@ -5,7 +5,7 @@ use yii\helpers\Html;
 
 ?>
 
-<div id="database-form" class="panel panel-default animated fadeIn">
+<div id="database-form" class="panel panel-default">
     <div class="panel-heading">
         <?php echo Yii::t('InstallerModule.views_setup_database', '<strong>Database</strong> Configuration'); ?>
     </div>
@@ -36,23 +36,15 @@ use yii\helpers\Html;
 
         <hr>
 
-        <?php echo Html::submitButton(Yii::t('InstallerModule.base', 'Next'), array('class' => 'btn btn-primary', 'data-loader' => "modal", 'data-message' => Yii::t('InstallerModule.views_setup_database', 'Initializing database...'))); ?>
+        <?php echo Html::submitButton(Yii::t('InstallerModule.base', 'Next') . ' <i class="fa fa-arrow-circle-right"></i>', array('class' => 'btn btn-primary', 'data-loader' => "modal", 'data-message' => Yii::t('InstallerModule.views_setup_database', 'Initializing database...'))); ?>
 
         <?php ActiveForm::end(); ?>
     </div>
 </div>
 
 <script type="text/javascript">
-
     $(function () {
         // set cursor to email field
         $('#hostname').focus();
     })
-
-    // Shake panel after wrong validation
-    <?php if ($model->hasErrors()) { ?>
-    $('#database-form').removeClass('fadeIn');
-    $('#database-form').addClass('shake');
-    <?php } ?>
-
 </script>
