@@ -3,7 +3,7 @@ namespace core\modules\admin\assets;
 
 use yii\web\AssetBundle;
 
-class AdminLayoutAsset extends AssetBundle
+class AdminLteAsset extends AssetBundle
 {
     public $sourcePath = '@core/modules/admin/resources';
 

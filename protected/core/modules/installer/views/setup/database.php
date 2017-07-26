@@ -41,10 +41,3 @@ use yii\helpers\Html;
         <?php ActiveForm::end(); ?>
     </div>
 </div>
-
-<script type="text/javascript">
-    $(function () {
-        // set cursor to email field
-        $('#hostname').focus();
-    })
-</script>

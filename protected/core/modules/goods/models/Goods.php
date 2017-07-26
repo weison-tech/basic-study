@@ -324,7 +324,9 @@ class Goods extends \yii\db\ActiveRecord
         $str .= "<tr>";
         //Add the specification name to table column.
         foreach ($clo_name as $k => $v) {
-            $str .= "<td><b>{$spec[$v]}</b></td>";
+            if (isset($spec[$v])) {
+                $str .= "<td><b>{$spec[$v]}</b></td>";
+            }
         }
         $str .= "<td><b>" . Yii::t('GoodsModule.models_Goods', 'Price') . "</b></td>";
         $str .= "<td><b>" . Yii::t('GoodsModule.models_Goods', 'Stock') . "</b></td>";

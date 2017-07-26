@@ -1,9 +1,9 @@
 <?php
-use core\modules\admin\assets\AdminLayoutAsset;
+use core\modules\admin\assets\AdminLteAsset;
 use yii\helpers\Html;
 use yii\helpers\Url;
 
-AdminLayoutAsset::register($this);
+AdminLteAsset::register($this);
 ?>
 
 <?php $this->beginPage() ?>
@@ -23,11 +23,17 @@ AdminLayoutAsset::register($this);
         $settings->get('layout-boxed') && $class[] = 'layout-boxed';
         $settings->get('sidebar-collapse') && $class[] = 'sidebar-collapse';
         $skin = $settings->get('skin');
-        $skin ? $class[] = $skin : $class[] = 'green';
+        if ($skin) {
+            $class[] = $skin;
+            $class[] = 'skin-' . $skin;
+        } else {
+            $class[] = 'green';
+            $class[] = 'skin-green';
+        }
         echo Html::beginTag('body', [
             'id' => 'body',
             'class' => $class,
-        ])
+        ]);
     ?>
     <?php $this->beginBody() ?>
     <?php echo $content ?>
@@ -64,7 +70,7 @@ AdminLayoutAsset::register($this);
                 var value = $(this).attr('data-skin');
                 setting(name, value);
             })
-        })
+        });
 
         function setting(name, value) {
             var url = "<?= Url::to(['/admin/index/ajax-layout-setting']) ?>";

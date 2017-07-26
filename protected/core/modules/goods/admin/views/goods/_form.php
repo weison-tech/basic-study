@@ -190,7 +190,7 @@ use yii\web\JsExpression;
             select_attr(goods_type);
             select_spec(goods_type);
         }
-    })
+    });
 
     /**
      * Ajax get goods attribute form
