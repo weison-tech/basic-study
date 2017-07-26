@@ -112,10 +112,10 @@ class File extends ActiveRecord
             [
                 'class' => TimestampBehavior::className(),
             ],
-            [
+            /*[
                 'class' => BlameableBehavior::className(),
                 'value' => Yii::$app->admin->id,
-            ],
+            ],*/
         ];
     }
 

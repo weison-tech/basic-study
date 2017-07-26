@@ -8,6 +8,7 @@
 namespace core\commands;
 
 use yii\console\Controller;
+use core\modules\file\models\File;
 
 /**
  * This command echoes the first argument that you have entered.
@@ -17,14 +18,17 @@ use yii\console\Controller;
  * @author Qiang Xue <qiang.xue@gmail.com>
  * @since 2.0
  */
-class HelloController extends Controller
+class CleanController extends Controller
 {
     /**
      * This command echoes what you have entered as the message.
      * @param string $message the message to be echoed.
      */
-    public function actionIndex($message = 'hello world')
+    public function actionIndex()
     {
-        echo $message . "\n";
+        $files = File::find()->where(['object_id' => ''])->all();
+        foreach ($files as $file) {
+            $file->delete();
+        }
     }
 }

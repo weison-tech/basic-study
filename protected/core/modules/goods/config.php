@@ -16,8 +16,5 @@ return [
         'admin' => [
             'class' => 'core\modules\goods\admin\Module'
         ],
-        'mobile' => [
-            'class' => 'core\modules\goods\mobile\Module'
-        ],
     ],
 ];
