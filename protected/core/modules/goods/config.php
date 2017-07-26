@@ -11,9 +11,6 @@ return [
     'isCoreModule' => true,
     'events' => [
         ['class' => AdminMenu::className(), 'event' => AdminMenu::EVENT_INIT, 'callback' => ['core\modules\goods\Events', 'onAdminMenuInit']],
-        ['class' => BottomNav::className(), 'event' => BottomNav::EVENT_INIT, 'callback' => ['core\modules\goods\Events', 'onBottomNavInit']],
-        ['class' => Shortcut::className(), 'event' => Shortcut::EVENT_INIT, 'callback' => ['core\modules\goods\Events', 'onShortcutInit']],
-        ['class' => Entrance::className(), 'event' => Entrance::EVENT_INIT, 'callback' => ['core\modules\goods\Events', 'onEntranceInit']],
     ],
     'modules' => [
         'admin' => [

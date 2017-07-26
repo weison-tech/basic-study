@@ -16,7 +16,7 @@ $config = [
             'identityClass' => 'core\modules\user\models\User',
             'enableAutoLogin' => true,
             'authTimeout' => 1400,
-            'loginUrl' => ['/user/auth/login'],
+            'loginUrl' => ['/user/index/login'],
             'idParam' => '__user',
         ],
         'admin' => [
