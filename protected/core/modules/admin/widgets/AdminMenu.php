@@ -14,11 +14,11 @@ class AdminMenu extends \core\widgets\BaseMenu
         $this->addItem(
             [
                 'label' => Yii::t('AdminModule.widgets_AdminMenu', 'System Setting'),
-                'icon' => 'fa fa-cog',
+                'icon' => 'cog',
                 'url' => '#',
                 'sortOrder' => 1,
                 'items' => [
-                    ['label' => Yii::t('AdminModule.widgets_AdminMenu', 'File Setting'), 'icon' => 'fa fa-circle-o', 'url' => ['/file/setting'],],
+                    ['label' => Yii::t('AdminModule.widgets_AdminMenu', 'File Setting'), 'icon' => 'circle-o', 'url' => ['/file/setting'],],
                 ],
             ]
         );

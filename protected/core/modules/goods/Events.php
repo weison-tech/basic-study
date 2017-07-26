@@ -17,18 +17,18 @@ class Events extends \yii\base\Object
     {
         $event->sender->addItem(array(
             'label' => Yii::t('GoodsModule.base', 'Goods Management'),
-            'icon' => 'fa fa-book',
+            'icon' => 'book',
             'url' => '#',
             'sortOrder' => 9,
             'items' => [
-                ['label' => Yii::t('GoodsModule.base', 'Goods Category'), 'icon' => 'fa fa-circle-o', 'url' => ['/goods/admin/goods-category'],],
-                ['label' => Yii::t('GoodsModule.base', 'Goods List'), 'icon' => 'fa fa-circle-o', 'url' => ['/goods/admin/goods'],],
-                ['label' => Yii::t('GoodsModule.base', 'Goods Type'), 'icon' => 'fa fa-circle-o', 'url' => ['/goods/admin/goods-type'],],
-                ['label' => Yii::t('GoodsModule.base', 'Goods Specifications'), 'icon' => 'fa fa-circle-o', 'url' => ['/goods/admin/spec-name'],],
-                ['label' => Yii::t('GoodsModule.base', 'Goods Attributes'), 'icon' => 'fa fa-circle-o', 'url' => ['/goods/admin/goods-attribute'],],
-                ['label' => Yii::t('GoodsModule.base', 'Brand List'), 'icon' => 'fa fa-circle-o', 'url' => ['/goods/admin/brand'],],
-                ['label' => Yii::t('GoodsModule.base', 'Goods Comments'), 'icon' => 'fa fa-circle-o', 'url' => ['/goods/admin/comments'],],
-                ['label' => Yii::t('GoodsModule.base', 'Goods Consultation'), 'icon' => 'fa fa-circle-o', 'url' => ['/goods/admin/consultation'],],
+                ['label' => Yii::t('GoodsModule.base', 'Goods Category'), 'icon' => 'circle-o', 'url' => ['/goods/admin/goods-category'],],
+                ['label' => Yii::t('GoodsModule.base', 'Goods List'), 'icon' => 'circle-o', 'url' => ['/goods/admin/goods'],],
+                ['label' => Yii::t('GoodsModule.base', 'Goods Type'), 'icon' => 'circle-o', 'url' => ['/goods/admin/goods-type'],],
+                ['label' => Yii::t('GoodsModule.base', 'Goods Specifications'), 'icon' => 'circle-o', 'url' => ['/goods/admin/spec-name'],],
+                ['label' => Yii::t('GoodsModule.base', 'Goods Attributes'), 'icon' => 'circle-o', 'url' => ['/goods/admin/goods-attribute'],],
+                ['label' => Yii::t('GoodsModule.base', 'Brand List'), 'icon' => 'circle-o', 'url' => ['/goods/admin/brand'],],
+                ['label' => Yii::t('GoodsModule.base', 'Goods Comments'), 'icon' => 'circle-o', 'url' => ['/goods/admin/comments'],],
+                ['label' => Yii::t('GoodsModule.base', 'Goods Consultation'), 'icon' => 'circle-o', 'url' => ['/goods/admin/consultation'],],
             ],
         ));
     }
