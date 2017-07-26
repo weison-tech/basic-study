@@ -14,6 +14,7 @@ class AdminLteAsset extends AssetBundle
     ];
 
     public $depends = [
+        'core\assets\JqueryAsset',
         'weison\alert\LayerAsset', // Import layer alert's js and css.
         'dmstr\web\AdminLteAsset', //Import admin lte theme assets.
     ];

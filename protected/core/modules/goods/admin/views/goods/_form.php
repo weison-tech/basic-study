@@ -200,7 +200,8 @@ use yii\web\JsExpression;
     {
         var url = "<?= Url::to(['select-attribute']) ?>";
         var goods_id = <?= $model->isNewRecord ? 0 : $model->id ?>;
-        $.post(url, {goods_type: value, goods_id: goods_id}, function(data){
+        var _csrf = "<?= Yii::$app->request->csrfToken ?>";
+        $.post(url, {goods_type: value, goods_id: goods_id, _csrf: _csrf}, function(data){
             $("#attribute-ajax-return").html(data);
         })
     }
@@ -213,7 +214,8 @@ use yii\web\JsExpression;
     {
         var url = "<?= Url::to(['select-specification']) ?>";
         var goods_id = <?= $model->isNewRecord ? 0 : $model->id ?>;
-        $.post(url, {goods_type: value, goods_id: goods_id}, function(data){
+        var _csrf = "<?= Yii::$app->request->csrfToken ?>";
+        $.post(url, {goods_type: value, goods_id: goods_id, _csrf: _csrf}, function(data){
             $("#specification-ajax-return").html(data);
         })
     }
