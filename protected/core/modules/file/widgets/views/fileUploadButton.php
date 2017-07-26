@@ -43,11 +43,13 @@ $this->registerJsVar('fileuploader_error_modal_errormsg',
     <i class="fa fa-cloud-upload"></i>
 
     <input id="fileUploaderButton_<?php echo $uploaderId; ?>" type="file" name="files[]"
-           data-url="<?php echo Url::to([
-               '/file/file/upload-simple',
-               'objectModel' => $objectModel,
-               'objectId' => $objectId
-           ]); ?>" multiple>
+       data-url="<?php echo Url::to([
+           '/file/file/upload-simple',
+           'objectModel' => $objectModel,
+           'objectId' => $objectId
+       ]); ?>"
+       <?= $multiple ? 'multiple' : '' ?>
+    >
 </span>
 
 <script src="/static/js/fileuploader.js"></script>

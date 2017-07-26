@@ -8,8 +8,31 @@ function installUploader(uploaderId) {
             done: function (e, data) {
                 $.each(data.result.files, function (index, file) {
                     if (!file.error) {
-                        hiddenValueField = $('#fileUploaderHiddenField_' + uploaderId);
-                        hiddenValueField.val(hiddenValueField.val() + "," + file.guid);
+                        //Check whether is multiple mode.
+                        isMultiple = $('#fileUploaderButton_' + uploaderId).attr('multiple') == 'multiple';
+
+                        if (!isMultiple) {
+                            //Add image guid to hidden field.
+                            hiddenValueField = $('#fileUploaderHiddenField_' + uploaderId);
+                            hiddenValueField.val(file.guid);
+
+                            //Preview the image
+                            previewField = $('#showImg_' + uploaderId).attr('src', file.url);
+
+                            Arr = uploaderId.split("_");
+                            showId = Arr[0] + '_show_' + Arr[Arr.length - 1];
+                            if ($("#" + showId).length > 0) { //Before upload there already exist image.
+                                $("#" + showId).attr('src', file.url).attr('style', previewField.attr('style')).show();
+                            } else { //There was no image before this upload action.
+                                previewField.show();
+                            }
+                        } else {
+                            //Add image guid to hidden field.
+                            hiddenValueField = $('#fileUploaderHiddenField_' + uploaderId);
+                            hiddenValueField.val(hiddenValueField.val() + "," + file.guid);
+                            //TODO multiple mode.
+                        }
+
                         addToUploadList(uploaderId, file.guid, file.name, file.mimeIcon);
                     } else {
                         showFileUploadError(file);
