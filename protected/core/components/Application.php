@@ -41,4 +41,20 @@ class Application extends \yii\web\Application
         parent::bootstrap();
     }
 
+    /**
+     * @inheritdoc
+     */
+    public function beforeAction($action)
+    {
+        /**
+         * Check if it's already installed - if not force controller module
+         */
+        if (!$this->params['installed'] && $this->controller->module != null && $this->controller->module->id != 'installer') {
+            $this->controller->redirect(['/installer/index']);
+            return false;
+        }
+
+        return parent::beforeAction($action);
+    }
+
 }
