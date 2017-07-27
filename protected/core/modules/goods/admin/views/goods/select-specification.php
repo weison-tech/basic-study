@@ -52,6 +52,19 @@ use yii\helpers\Url;
                 </td>
             </tr>
         <?php } ?>
+
+        <!--Delete all spec images-->
+        <?php if ($spec_image_list) { ?>
+            <tr>
+                <td></td>
+                <td>
+                    <a class="btn btn-default" href="javascript:void(0)" onclick="delete_spec_img()">
+                        <?= Yii::t('GoodsModule.admin_views_goods_select-specification',
+                            'Delete all specification images') ?>
+                    </a>
+                </td>
+            </tr>
+        <?php } ?>
     </table>
 
     <!-- ajax return the sku list -->
@@ -144,5 +157,23 @@ use yii\helpers\Url;
                 }
             }
         }
+    }
+
+    /**
+     * Delete all specification images.
+     */
+    function delete_spec_img()
+    {
+        var goods_id = <?= $goods_id ?>;
+        $.ajax({
+            type: 'POST',
+            data: {'goods_id': goods_id},
+            url: "<?= Url::to(['delete-spec-img'])?>",
+            success: function (data) {
+                $("img[id^='spec_show_']").remove();
+                $("input[id^='fileUploaderHiddenField_spec_upload_']").val('');
+                $("img[id^='showImg_spec_upload_']").hide();
+            }
+        });
     }
 </script>

@@ -18,4 +18,5 @@
  */
 return [
     'Goods Specification' => '商品规格',
+    'Delete all specification images' => '清除所有规格图片',
 ];

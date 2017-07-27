@@ -387,7 +387,7 @@ class GoodsController extends Controller
         }
 
         return $this->renderAjax('select-specification',
-            compact('spec_list', 'items_ids', 'spec_image_list')
+            compact('spec_list', 'items_ids', 'spec_image_list', 'goods_id')
         );
     }
 
@@ -422,6 +422,28 @@ class GoodsController extends Controller
         } else {
             $data = ['code' => 500, 'msg' => Yii::t('GoodsModule.base', 'Parameters less.')];
             exit(json_encode($data));
+        }
+    }
+
+    /**
+     * Delete all specification images.
+     */
+    public function actionDeleteSpecImg()
+    {
+        $goods_id= Yii::$app->request->post('goods_id');
+        //Find all spec image relation recorder.
+        $spec_img = SpecImage::find()->where(['goods_id' => $goods_id])->asArray()->all();
+        $spec_img_ids = array_column($spec_img, 'id');
+
+        //Delete all spec image relation recorder.
+        SpecImage::deleteAll(['in', 'id', $spec_img_ids]);
+
+        //Delete all file.
+        $files = File::find()->where(['object_model' => 'core\modules\goods\models\SpecImage'])
+            ->andWhere(['in', 'object_id', $spec_img_ids])
+            ->all();
+        foreach($files as $file) {
+            $file->delete();
         }
     }
 }
