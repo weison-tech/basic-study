@@ -12,6 +12,7 @@ use yii\behaviors\BlameableBehavior;
 use core\components\behaviors\PolymorphicRelation;
 use core\components\behaviors\GUID;
 use core\modules\file\libs\ImageConverter;
+use core\components\console\Application as ConsoleApp;
 
 /**
  * This is the model class for table "file".
@@ -101,7 +102,7 @@ class File extends ActiveRecord
      */
     public function behaviors()
     {
-        return [
+        $behaviors  = [
             [
                 'class' => PolymorphicRelation::className(),
                 'mustBeInstanceOf' => array(ActiveRecord::className()),
@@ -112,11 +113,16 @@ class File extends ActiveRecord
             [
                 'class' => TimestampBehavior::className(),
             ],
-            /*[
+        ];
+
+        //If in console application do not apply BlameableBehavior.
+        if (!Yii::$app instanceof ConsoleApp) {
+            $behaviors[] = [
                 'class' => BlameableBehavior::className(),
                 'value' => Yii::$app->admin->id,
-            ],*/
-        ];
+            ];
+        }
+        return $behaviors;
     }
 
     /**
