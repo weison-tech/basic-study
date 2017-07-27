@@ -13,7 +13,7 @@ class IndexController extends Controller
     /**
      * @inheritdoc
      */
-    /*public function behaviors()
+    public function behaviors()
     {
         return [
             'access' => [
@@ -39,7 +39,7 @@ class IndexController extends Controller
                 ],
             ],
         ];
-    }*/
+    }
 
     /**
      * Home Index
