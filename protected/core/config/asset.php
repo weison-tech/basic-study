@@ -15,10 +15,10 @@ return [
     // The list of asset bundles to compress:
     // Asset bundle for compression output:
     'bundles' => [
-        'core\modules\admin\assets\AdminLteAsset',
+        'core\modules\admin\assets\AdminLteAsset'
     ],
     'targets' => [
-        'allPage' => [
+        'admin' => [
             'class' => 'yii\web\AssetBundle',
             'basePath' => '@webroot/assets',
             'baseUrl' => '@web/assets',
