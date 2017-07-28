@@ -8,6 +8,7 @@ class AdminLteAsset extends AssetBundle
     public $sourcePath = '@core/modules/admin/resources';
 
     public $js = [
+        'js/jquery.slimscroll.min.js',
         'js/yii_overrides.js', // Override yii default alert to layer alert.
     ];
 

@@ -22,8 +22,8 @@ return [
             'class' => 'yii\web\AssetBundle',
             'basePath' => '@webroot/assets',
             'baseUrl' => '@web/assets',
-            'js' => 'all-page-{hash}.js',
-            'css' => 'all-page-{hash}.css',
+            'js' => 'all-admin-{hash}.js',
+            'css' => 'all-admin-{hash}.css',
         ],
     ],
 
