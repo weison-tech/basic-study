@@ -18,7 +18,7 @@ class InstallerAsset extends AssetBundle
     public $sourcePath = '@core/modules/installer/resources';
 
     public $css = [
-        'css/installer.less',
+        'css/installer.css',
     ];
     public $js = [
     ];
