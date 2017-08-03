@@ -67,7 +67,11 @@ $this->params['breadcrumbs'][] = $this->title;
                 'format' => 'raw',
             ],
             'weight',
-            'is_free_shipping',
+            [
+                'attribute'=>'is_free_shipping',
+                'value'=> $model->is_free_shipping ? Yii::t('base', 'Yes') : Yii::t('base', 'No'),
+                'format' => 'raw',
+            ],
             'keywords',
             'on_sale_at:datetime',
             'sort',

@@ -18,4 +18,7 @@
  */
 return [
     'Language' => '语言',
+    'Are you sure you want to delete this item?' => '确定删除此项？',
+    'Yes' => '是',
+    'No' => '否',
 ];
