@@ -19,4 +19,9 @@
 return array(
     'System Setting' => '系统设置',
     'File Setting' => '附件设置',
+    'Permission Management' => '权限管理',
+    'Rules' => '路由管理',
+    'Assignment' => '分配权限',
+    'Roles' => '角色',
+    'Permissions' => '权限',
 );

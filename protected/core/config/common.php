@@ -55,6 +55,10 @@ $config = [
                 'name' => 'default',
             ],
         ],
+        'authManager' => [
+            'class' => 'yii\rbac\DbManager',
+            'defaultRoles' => ['guest', 'user']
+        ],
     ],
 
     'params' => [

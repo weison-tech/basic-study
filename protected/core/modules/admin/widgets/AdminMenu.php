@@ -18,7 +18,29 @@ class AdminMenu extends \core\widgets\BaseMenu
                 'url' => '#',
                 'sortOrder' => 1,
                 'items' => [
-                    ['label' => Yii::t('AdminModule.widgets_AdminMenu', 'File Setting'), 'icon' => 'circle-o', 'url' => ['/file/setting'],],
+                    [
+                        'label' => Yii::t('AdminModule.widgets_AdminMenu', 'Permission Management'),
+                        'icon' => 'group',
+                        'url' => '#',
+                        'sortOrder' => 1,
+                        'items' => [
+                            ['label' => Yii::t('AdminModule.widgets_AdminMenu', 'Assignment'), 'icon' => 'hand-pointer-o', 'url' => ['/admin/rbac/assignment'],],
+                            ['label' => Yii::t('AdminModule.widgets_AdminMenu', 'Roles'), 'icon' => 'user', 'url' => ['/admin/rbac/role'],],
+                            ['label' => Yii::t('AdminModule.widgets_AdminMenu', 'Permissions'), 'icon' => 'gavel', 'url' => ['/admin/rbac/permission'],],
+                            ['label' => Yii::t('AdminModule.widgets_AdminMenu', 'Rules'), 'icon' => 'globe', 'url' => ['/admin/rbac/route'],],
+                        ],
+                    ],
+
+                    ['label' => Yii::t('AdminModule.widgets_AdminMenu', 'File Setting'), 'icon' => 'file-code-o', 'url' => ['/file/setting'],],
+                ],
+            ],
+            [
+                'label' => Yii::t('AdminModule.widgets_AdminMenu', 'System Setting'),
+                'icon' => 'cog',
+                'url' => '#',
+                'sortOrder' => 2,
+                'items' => [
+
                 ],
             ]
         );
