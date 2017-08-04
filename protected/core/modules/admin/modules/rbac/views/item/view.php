@@ -42,6 +42,11 @@ $this->render('/layouts/_sidebar');
     <?php echo $this->render('../_dualListBox', [
         'opts' => Json::htmlEncode([
             'items' => $model->getItems(),
+            'label' => [
+                'label_roles' => Yii::t('AdminModule.rbac_base', 'Roles'),
+                'label_permission' => Yii::t('AdminModule.rbac_base', 'Permissions'),
+                'label_routes' => Yii::t('AdminModule.rbac_base', 'Routes'),
+            ],
         ]),
         'assignUrl' => ['assign', 'id' => $model->name],
         'removeUrl' => ['remove', 'id' => $model->name],
