@@ -4,8 +4,6 @@ namespace core\modules\goods\admin\controllers;
 use Yii;
 use yii\helpers\Url;
 use yii\web\NotFoundHttpException;
-use yii\filters\VerbFilter;
-use yii\filters\AccessControl;
 use core\modules\file\models\File;
 use core\modules\goods\models\GoodsAttribute;
 use core\modules\goods\models\GoodsAttributeRelation;
@@ -23,32 +21,6 @@ use yii2mod\editable\EditableAction;
  */
 class GoodsController extends Controller
 {
-    /**
-     * @inheritdoc
-     */
-    public function behaviors()
-    {
-        return [
-            'access' => [
-                'class' => AccessControl::className(),
-                'user' => 'admin',
-                'rules' => [
-                    [
-                        'actions' => [],
-                        'allow' => true,
-                        'roles' => ['@'],
-                    ],
-                ],
-            ],
-            'verbs' => [
-                'class' => VerbFilter::className(),
-                'actions' => [
-                    'delete' => ['POST'],
-                ],
-            ],
-        ];
-    }
-
     /**
      * @inheritdoc
      */

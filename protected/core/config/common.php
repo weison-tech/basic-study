@@ -74,15 +74,6 @@ $config = [
         ],
         'allowedLanguages' => [],
     ],
-
-    'as access' => [
-        'class' => core\modules\admin\modules\rbac\filters\AccessControl::class,
-        'allowActions' => [
-            'admin/index/*',
-            'admin/rbac/*', //When application in product environment, this line should be deleted.
-        ],
-        'user' => 'admin',
-    ],
 ];
 
 return $config;

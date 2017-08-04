@@ -6,39 +6,11 @@ use core\modules\goods\models\GoodsType;
 use core\modules\goods\models\search\GoodsTypeSearch;
 use core\modules\admin\components\Controller;
 use yii\web\NotFoundHttpException;
-use yii\filters\VerbFilter;
-use yii\filters\AccessControl;
-
 /**
  * GoodsTypeController implements the CRUD actions for GoodsType model.
  */
 class GoodsTypeController extends Controller
 {
-    /**
-     * @inheritdoc
-     */
-    public function behaviors()
-    {
-        return [
-            'access' => [
-                'class' => AccessControl::className(),
-                'user' => 'admin',
-                'rules' => [
-                    [
-                        'actions' => [],
-                        'allow' => true,
-                        'roles' => ['@'],
-                    ],
-                ],
-            ],
-            'verbs' => [
-                'class' => VerbFilter::className(),
-                'actions' => [
-                    'delete' => ['POST'],
-                ],
-            ],
-        ];
-    }
 
     /**
      * Lists all GoodsType models.

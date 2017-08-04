@@ -6,8 +6,6 @@ use core\modules\goods\models\Brand;
 use core\modules\goods\models\search\BrandSearch;
 use core\modules\admin\components\Controller;
 use yii\web\NotFoundHttpException;
-use yii\filters\VerbFilter;
-use yii\filters\AccessControl;
 use yii2mod\editable\EditableAction;
 
 /**
@@ -15,32 +13,6 @@ use yii2mod\editable\EditableAction;
  */
 class BrandController extends Controller
 {
-    /**
-     * @inheritdoc
-     */
-    public function behaviors()
-    {
-        return [
-            'access' => [
-                'class' => AccessControl::className(),
-                'user' => 'admin',
-                'rules' => [
-                    [
-                        'actions' => [],
-                        'allow' => true,
-                        'roles' => ['@'],
-                    ],
-                ],
-            ],
-            'verbs' => [
-                'class' => VerbFilter::className(),
-                'actions' => [
-                    'delete' => ['POST'],
-                ],
-            ],
-        ];
-    }
-
     /**
      * @inheritdoc
      */

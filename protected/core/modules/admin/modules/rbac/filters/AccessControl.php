@@ -33,8 +33,6 @@ class AccessControl extends \yii\filters\AccessControl
         $controller = $action->controller;
         $params = ArrayHelper::getValue($this->params, $action->id, []);
 
-        //Only those controllers who extends core\modules\admin\components\Controller should check permission.
-        if ($controller instanceof \core\modules\admin\components\Controller) {
             if (Yii::$app->admin->can('/' . $action->getUniqueId(), $params)) {
                 return true;
             }
@@ -47,9 +45,6 @@ class AccessControl extends \yii\filters\AccessControl
             } while ($controller !== null);
 
             return parent::beforeAction($action);
-        } else {
-            return true;
-        }
     }
 
     /**
