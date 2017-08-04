@@ -45,6 +45,6 @@ class AdminMenu extends \core\widgets\BaseMenu
             ]
         );
 
-        return parent::init();
+        parent::init();
     }
 }
