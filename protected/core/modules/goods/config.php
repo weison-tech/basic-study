@@ -14,7 +14,7 @@ return [
     ],
     'modules' => [
         'admin' => [
-            'class' => 'core\modules\goods\admin\Module'
+            'class' => 'core\modules\goods\admin\Module',
         ],
     ],
 ];

@@ -57,7 +57,7 @@ $config = [
         ],
         'authManager' => [
             'class' => 'yii\rbac\DbManager',
-            'defaultRoles' => ['guest', 'user']
+            'defaultRoles' => ['guest', 'admin']
         ],
     ],
 
@@ -72,6 +72,14 @@ $config = [
             'zh_cn' => '中文(简体)',
         ],
         'allowedLanguages' => [],
+    ],
+
+    'as access' => [
+        'class' => core\modules\admin\modules\rbac\filters\AccessControl::class,
+        'allowActions' => [
+            'admin/rbac/*',
+        ],
+        'user' => 'admin',
     ],
 ];
 

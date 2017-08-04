@@ -33,18 +33,23 @@ class AccessControl extends \yii\filters\AccessControl
         $controller = $action->controller;
         $params = ArrayHelper::getValue($this->params, $action->id, []);
 
-        if (Yii::$app->user->can('/' . $action->getUniqueId(), $params)) {
-            return true;
-        }
-
-        do {
-            if (Yii::$app->user->can('/' . ltrim($controller->getUniqueId() . '/*', '/'))) {
+        //Only those controllers who extends core\modules\admin\components\Controller should check permission.
+        if ($controller instanceof \core\modules\admin\components\Controller) {
+            if (Yii::$app->admin->can('/' . $action->getUniqueId(), $params)) {
                 return true;
             }
-            $controller = $controller->module;
-        } while ($controller !== null);
 
-        return parent::beforeAction($action);
+            do {
+                if (Yii::$app->admin->can('/' . ltrim($controller->getUniqueId() . '/*', '/'))) {
+                    return true;
+                }
+                $controller = $controller->module;
+            } while ($controller !== null);
+
+            return parent::beforeAction($action);
+        } else {
+            return true;
+        }
     }
 
     /**
@@ -84,9 +89,9 @@ class AccessControl extends \yii\filters\AccessControl
      */
     private function isLoginPage($action)
     {
-        $loginUrl = trim(Url::to(Yii::$app->user->loginUrl), '/');
+        $loginUrl = trim(Url::to(Yii::$app->admin->loginUrl), '/');
 
-        if (Yii::$app->user->isGuest && $action->getUniqueId() === $loginUrl) {
+        if (Yii::$app->admin->isGuest && $action->getUniqueId() === $loginUrl) {
             return true;
         }
 
