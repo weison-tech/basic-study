@@ -4,6 +4,7 @@ namespace core\modules\admin\modules\rbac\base;
 
 use Yii;
 use yii\filters\VerbFilter;
+use yii\helpers\ArrayHelper;
 use yii\rbac\Item;
 use core\modules\admin\components\Controller;
 use yii\web\NotFoundHttpException;
@@ -40,7 +41,7 @@ class ItemController extends Controller
      */
     public function behaviors()
     {
-        return [
+        $behaviors = [
             'verbs' => [
                 'class' => VerbFilter::class,
                 'actions' => [
@@ -61,6 +62,8 @@ class ItemController extends Controller
                 ],
             ],
         ];
+
+        return ArrayHelper::merge($behaviors, parent::behaviors());
     }
 
     /**

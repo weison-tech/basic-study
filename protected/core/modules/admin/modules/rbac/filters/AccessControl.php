@@ -109,7 +109,7 @@ class AccessControl extends \yii\filters\AccessControl
                 $id = substr($id, strlen($ownerId) + 1);
             }
         } else {
-            $id = $action->id;
+            $id = $action->getUniqueId();
         }
 
         foreach ($this->allowActions as $route) {

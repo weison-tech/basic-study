@@ -5,6 +5,7 @@ namespace core\modules\admin\modules\rbac\controllers;
 use Yii;
 use yii\filters\VerbFilter;
 use core\modules\admin\components\Controller;
+use yii\helpers\ArrayHelper;
 use yii\web\Response;
 use core\modules\admin\modules\rbac\models\RouteModel;
 
@@ -29,7 +30,7 @@ class RouteController extends Controller
      */
     public function behaviors()
     {
-        return [
+        $behaviors =  [
             'verbs' => [
                 'class' => VerbFilter::class,
                 'actions' => [
@@ -48,6 +49,7 @@ class RouteController extends Controller
                 ],
             ],
         ];
+        return ArrayHelper::merge($behaviors, parent::behaviors());
     }
 
     /**

@@ -2,6 +2,7 @@
 
 namespace core\modules\admin\components;
 
+use Yii;
 use yii\filters\VerbFilter;
 use core\modules\admin\modules\rbac\filters\AccessControl;
 
@@ -17,10 +18,8 @@ class Controller extends \yii\web\Controller
         return [
             'access' => [
                 'class' => AccessControl::class,
-                'allowActions' => [
-                    'admin/index/*',
-                    'admin/rbac/*', //When application in product environment, this line should be deleted.
-                ],
+                //When application in product environment, this line should be deleted.
+                'allowActions' => Yii::$app->params['notCheckPermissionAction'],
                 'user' => 'admin',
             ],
 

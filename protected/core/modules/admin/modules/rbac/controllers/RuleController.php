@@ -5,6 +5,7 @@ namespace core\modules\admin\modules\rbac\controllers;
 use Yii;
 use yii\filters\VerbFilter;
 use core\modules\admin\components\Controller;
+use yii\helpers\ArrayHelper;
 use yii\web\NotFoundHttpException;
 use core\modules\admin\modules\rbac\models\BizRuleModel;
 use core\modules\admin\modules\rbac\models\search\BizRuleSearch;
@@ -30,7 +31,7 @@ class RuleController extends Controller
      */
     public function behaviors()
     {
-        return [
+        $behaviors = [
             'verbs' => [
                 'class' => VerbFilter::class,
                 'actions' => [
@@ -42,6 +43,7 @@ class RuleController extends Controller
                 ],
             ],
         ];
+        return ArrayHelper::merge($behaviors, parent::behaviors());
     }
 
     /**

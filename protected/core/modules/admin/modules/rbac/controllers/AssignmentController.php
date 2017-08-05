@@ -4,6 +4,7 @@ namespace core\modules\admin\modules\rbac\controllers;
 
 use Yii;
 use core\modules\admin\components\Controller;
+use yii\helpers\ArrayHelper;
 use yii\web\NotFoundHttpException;
 use yii\web\Response;
 use core\modules\admin\modules\rbac\models\AssignmentModel;
@@ -67,7 +68,7 @@ class AssignmentController extends Controller
      */
     public function behaviors()
     {
-        return [
+        $behaviors = [
             'verbs' => [
                 'class' => 'yii\filters\VerbFilter',
                 'actions' => [
@@ -85,6 +86,7 @@ class AssignmentController extends Controller
                 ],
             ],
         ];
+        return ArrayHelper::merge($behaviors, parent::behaviors());
     }
 
     /**

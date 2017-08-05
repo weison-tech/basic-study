@@ -4,6 +4,7 @@ namespace core\modules\admin\controllers;
 use Yii;
 use core\modules\admin\components\Controller;
 use core\modules\admin\forms\LoginForm;
+use yii\helpers\ArrayHelper;
 use yii\helpers\Url;
 use yii\filters\AccessControl;
 use yii\filters\VerbFilter;
@@ -15,7 +16,7 @@ class IndexController extends Controller
      */
     public function behaviors()
     {
-        return [
+        $behaviors = [
             'access' => [
                 'class' => AccessControl::className(),
                 'user' => 'admin',
@@ -39,6 +40,8 @@ class IndexController extends Controller
                 ],
             ],
         ];
+
+        return ArrayHelper::merge($behaviors, parent::behaviors());
     }
 
     /**

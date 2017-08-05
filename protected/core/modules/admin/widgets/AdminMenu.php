@@ -33,15 +33,6 @@ class AdminMenu extends \core\widgets\BaseMenu
 
                     ['label' => Yii::t('AdminModule.widgets_AdminMenu', 'File Setting'), 'icon' => 'file-code-o', 'url' => ['/file/setting'],],
                 ],
-            ],
-            [
-                'label' => Yii::t('AdminModule.widgets_AdminMenu', 'System Setting'),
-                'icon' => 'cog',
-                'url' => '#',
-                'sortOrder' => 2,
-                'items' => [
-
-                ],
             ]
         );
 

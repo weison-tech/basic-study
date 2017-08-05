@@ -73,6 +73,9 @@ $config = [
             'zh_cn' => '中文(简体)',
         ],
         'allowedLanguages' => [],
+        'notCheckPermissionAction' => [
+            'admin/rbac/*', //When application in product environment, this line should be deleted.
+        ],
     ],
 ];
 
