@@ -46,61 +46,102 @@ class BaseMenu extends \dmstr\widgets\Menu
             return;
         }
 
-        $hasPermission = $this->hasPermission($item);
-
-        if ($hasPermission) {
+        $valid = $this->checkPermission($item);
+        if ($valid) {
             $this->items[] = $item;
         }
     }
 
-    private function hasPermission($item)
+    /**
+     * Check permission
+     * @param array $item
+     * @return bool
+     */
+    private function checkPermission(&$item)
     {
-        //Check whether has permission, if not, hidden it in menu.
-        $hasPermission = false;
-
         $url = isset($item['url']) ? $item['url'] : '#'; //If the menu is one level menu.
         if ($url != '#' && $url != '') {
-            if (Yii::$app->admin->can($url)) {
-                $hasPermission = true;
-            } else {
-                //Check if has wildcard (eg. /admin/*)
-                $temp = explode("/", $url);
-                $temp = array_filter($temp);
-                foreach ($temp as $k => $v) {
-                    $match = '';
-                    $i = $k;
-                    do {
-                        $match =  '/' . $temp[$i] . $match;
-                        $i--;
-                    } while($i > 0);
-
-                    if (Yii::$app->admin->can($match . '/*')) {
-                        $hasPermission = true;
-                        break;
+            return $this->doCheck($url);
+        } else { //TODO More than one level
+            $hasSecond = $hasThird = false;
+            foreach ($item['items'] as $key_second => $second) {
+                //If the menu is second level menu.
+                $second_url = (isset($second['url']) && isset($second['url'][0]) )? $second['url'][0] : '#';
+                if ($second_url != '' && $second_url != '#') {
+                    $hasPermission = $this->doCheck($second_url);
+                    if ($hasPermission === false) {
+                        unset($item['items'][$key_second]);
+                    } else {
+                        $hasSecond = true;
+                    }
+                } else { //If the menu is third level menu.
+                    foreach ($second['items'] as $key_third => $third) {
+                        $third_url = (isset($third['url']) && isset($third['url'][0]) )? $third['url'][0] : '#';
+                        if ($third_url != '' && $third_url != '#') {
+                            $hasPermission = $this->doCheck($third_url);
+                            if ($hasPermission === false) {
+                                unset($item['items'][$key_second]['items'][$key_third]);
+                            } else {
+                                $hasThird = true;
+                            }
+                        }
+                    }
+                    if ($hasThird === false) {
+                        unset($item['items'][$key_second]);
                     }
                 }
+            }
+            return $hasSecond || $hasThird;
+        }
+    }
 
-                //Check whether the action is not need permission check.
-                if ($hasPermission === false) {
-                    $url = ltrim($url, "/");
-                    foreach (Yii::$app->params['notCheckPermissionAction'] as $route) {
-                        if (substr($route, -1) === '*') {
-                            $route = rtrim($route, '*');
-                            if ($route === '' || strpos($url, $route) === 0) {
-                                $hasPermission = true;
-                                break;
-                            }
-                        } else {
-                            if ($url === $route) {
-                                $hasPermission = true;
-                                break;
-                            }
+    /**
+     * Check whether can access the given url.
+     * @param string $url
+     * @return boolean bool
+     */
+    private function doCheck($url)
+    {
+        $hasPermission = false;
+
+        if (Yii::$app->admin->can($url)) {
+            $hasPermission = true;
+        } else {
+            //Check if has wildcard (eg. /admin/*)
+            $temp = explode("/", $url);
+            $temp = array_filter($temp);
+            foreach ($temp as $k => $v) {
+                $match = '';
+                $i = $k;
+                do {
+                    $match =  '/' . $temp[$i] . $match;
+                    $i--;
+                } while($i > 0);
+
+                if (Yii::$app->admin->can($match . '/*')) {
+                    $hasPermission = true;
+                    break;
+                }
+            }
+
+            //Check whether the action is not need permission check.
+            if ($hasPermission === false) {
+                $url = ltrim($url, "/");
+                foreach (Yii::$app->params['notCheckPermissionAction'] as $route) {
+                    if (substr($route, -1) === '*') {
+                        $route = rtrim($route, '*');
+                        if ($route === '' || strpos($url, $route) === 0) {
+                            $hasPermission = true;
+                            break;
+                        }
+                    } else {
+                        if ($url === $route) {
+                            $hasPermission = true;
+                            break;
                         }
                     }
                 }
             }
-        } else { //TODO More than one level
-            $hasPermission = true;
         }
 
         return $hasPermission;
