@@ -62,7 +62,7 @@ class BaseMenu extends \dmstr\widgets\Menu
         $url = isset($item['url']) ? $item['url'] : '#'; //If the menu is one level menu.
         if ($url != '#' && $url != '') {
             return $this->doCheck($url);
-        } else { //TODO More than one level
+        } else {
             $hasSecond = $hasThird = false;
             foreach ($item['items'] as $key_second => $second) {
                 //If the menu is second level menu.
@@ -142,6 +142,10 @@ class BaseMenu extends \dmstr\widgets\Menu
                     }
                 }
             }
+        }
+
+        if ($hasPermission === false) {
+            $hasPermission = Yii::$app->admin->can('/' . $url . '/index');
         }
 
         return $hasPermission;
